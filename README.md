@@ -1,1 +1,0 @@
-# Basics_of_Math_and_Stat

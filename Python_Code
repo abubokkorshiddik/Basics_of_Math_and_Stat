@@ -1,0 +1,487 @@
+# Basics_of_Math_and_Stat
+
+## Mathematical Functions
+ import numpy as np
+ 
+import matplotlib.pyplot as plt
+
+import os
+
+
+### Create folder to save plots
+
+save_dir = "math_plots/math"
+
+os.makedirs(save_dir, exist_ok=True)
+
+### Function to save each plot
+
+   def save_plot(x, y, title, filename):
+
+    plt.figure(figsize=(6,4))
+    
+    plt.plot(x, y, color='blue')
+    
+    plt.title(title, fontsize=12)
+    
+    plt.xlabel("x")
+    
+    plt.ylabel("y")
+    
+    plt.grid(True)
+    
+    plt.savefig(os.path.join(save_dir, filename), dpi=300)
+    
+    plt.close()
+
+
+### 1. Linear y = x
+
+x = np.linspace(-10, 10, 400)
+
+y = x
+
+save_plot(x, y, "Linear: $y = x$\nStraight line through origin", "01_linear.png")
+
+<img width="1800" height="1200" alt="01_linear" src="https://github.com/user-attachments/assets/26a9c728-1f56-4e0e-b6ae-780a3d564b1b" />
+
+
+### 2. Quadratic y = x^2
+
+y = x**2
+
+save_plot(x, y, "Quadratic: $y = x^2$\nParabola opening upwards", "02_quadratic.png")
+
+<img width="1800" height="1200" alt="02_quadratic" src="https://github.com/user-attachments/assets/5ddd4360-5bf8-456f-ac72-4650ab1ecf82" />
+
+
+## 3 3. Cubic y = x^3
+
+y = x**3
+
+save_plot(x, y, "Cubic: $y = x^3$\nS-shaped curve", "03_cubic.png")
+
+<img width="1800" height="1200" alt="03_cubic" src="https://github.com/user-attachments/assets/7bb7288e-7b37-4f1f-8713-e3a5ebb73301" />
+
+### 4. Exponential y = e^x
+
+y = np.exp(x/3)
+
+save_plot(x, y, "Exponential: $y = e^{x}$\nRapid growth", "04_exponential.png")
+
+<img width="1800" height="1200" alt="04_exponential" src="https://github.com/user-attachments/assets/404fb936-7499-42dd-81f4-58fefa015773" />
+
+### 5. Logarithm y = ln(x) (x>0)
+
+x_pos = np.linspace(0.1, 10, 400)
+
+y = np.log(x_pos)
+
+save_plot(x_pos, y, "Logarithm: $y = \\ln(x)$\nInverse of exponential", "05_logarithm.png")
+
+<img width="1800" height="1200" alt="05_logarithm" src="https://github.com/user-attachments/assets/375bb165-f79b-4f6f-96dc-ffa97f7ea52c" />
+
+
+
+# Trigonometric Functions
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+import os
+
+
+### Create folder to save plots
+
+save_dir = "math_plots/trig"
+
+os.makedirs(save_dir, exist_ok=True)
+
+
+### Function to save each plot
+
+def save_plot(x, y, title, filename, clip=None):
+
+    plt.figure(figsize=(6,4))
+    
+    y = np.array(y)
+    
+    if clip is not None:
+    
+        y[np.abs(y) > clip] = np.nan
+        
+    plt.plot(x, y, color='purple')
+    
+    plt.title(title, fontsize=12)
+    
+    plt.xlabel("x")
+    
+    plt.ylabel("y")
+    
+    plt.grid(True)
+    
+    plt.savefig(os.path.join(save_dir, filename), dpi=300)
+    
+    plt.close()
+
+### x range
+x = np.linspace(-10, 10, 400)
+
+### 1. Sine
+
+y = np.sin(x)
+
+save_plot(x, y, "Sine: $y = \\sin(x)$\nPeriodic oscillation", "01_sine.png")
+
+<img width="1800" height="1200" alt="01_sine" src="https://github.com/user-attachments/assets/289f5742-9127-426d-a658-3c7065039186" />
+
+
+### 2. Cosine
+
+y = np.cos(x)
+
+save_plot(x, y, "Cosine: $y = \\cos(x)$\nPeriodic, phase shifted", "02_cosine.png")
+
+<img width="1800" height="1200" alt="02_cosine" src="https://github.com/user-attachments/assets/ba8c9d00-fb90-4a6b-89fd-acf884304733" />
+
+### 3. Tangent
+
+y = np.tan(x)
+
+save_plot(x, y, "Tangent: $y = \\tan(x)$\nPeriodic with vertical asymptotes", "03_tangent.png", clip=10)
+
+<img width="1800" height="1200" alt="03_tangent" src="https://github.com/user-attachments/assets/1b94c94f-9b56-4fb5-9908-61ae4ce766d8" />
+
+### 4. Cotangent
+
+y = 1/np.tan(x)
+
+save_plot(x, y, "Cotangent: $y = \\cot(x)$\nInverse of tangent", "04_cotangent.png", clip=10)
+
+<img width="1800" height="1200" alt="04_cotangent" src="https://github.com/user-attachments/assets/f0fef6ab-eb04-4398-b7ad-45c130736c0c" />
+
+
+### 5. Secant
+
+y = 1/np.cos(x)
+
+save_plot(x, y, "Secant: $y = \\sec(x)$\nInverse of cosine", "05_secant.png", clip=10)
+
+<img width="1800" height="1200" alt="05_secant" src="https://github.com/user-attachments/assets/2d2cdc9d-3780-49cd-befd-729dd43998a6" />
+
+### 6. Cosecant
+
+y = 1/np.sin(x)
+
+save_plot(x, y, "Cosecant: $y = \\csc(x)$\nInverse of sine", "06_cosecant.png", clip=10)
+
+<img width="1800" height="1200" alt="06_cosecant" src="https://github.com/user-attachments/assets/04f07e7c-93df-4041-be01-62573575ec99" />
+
+
+
+# Statistical Distributions
+
+#### Import Libraries
+
+import numpy as np
+
+import pandas as pd
+
+import matplotlib.pyplot as plt
+
+import seaborn as sns
+
+from scipy.stats import norm, uniform, expon, poisson, binom, t, chi2, f, skew, kurtosis, probplot
+
+
+#### Set Save Directory
+
+save_dir = "stat_plots"
+
+import os
+
+os.makedirs(save_dir, exist_ok=True)
+
+## 1. Continuous Distributions
+
+x = np.linspace(-4, 4, 400)
+
+### --- 1.1 Normal PDF ---
+
+plt.figure(figsize=(6,4))
+
+plt.plot(x, norm.pdf(x), color="blue", label=r"Normal PDF ($\mu=0, \sigma=1$)")
+
+plt.title("Normal Probability Density Function")
+
+plt.xlabel("x")
+
+plt.ylabel("f(x)")
+
+plt.legend(); plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "normal_pdf.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="normal_pdf" src="https://github.com/user-attachments/assets/e59ba4bb-0d7c-4ca4-adb5-337115d451f0" />
+
+
+### --- 1.2 Uniform PDF ---
+
+x = np.linspace(0, 1, 400)
+
+plt.figure(figsize=(6,4))
+
+plt.plot(x, uniform.pdf(x), color="green", label="Uniform PDF [0,1]")
+
+plt.title("Uniform Probability Density Function")
+
+plt.xlabel("x"); plt.ylabel("f(x)")
+
+plt.legend(); plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "uniform_pdf.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="uniform_pdf" src="https://github.com/user-attachments/assets/dec4d6b9-79d3-461a-ae10-a53b7baaf3ee" />
+
+### --- 1.3 Exponential PDF ---
+
+x = np.linspace(0, 5, 400)
+
+plt.figure(figsize=(6,4))
+
+plt.plot(x, expon.pdf(x), color="red", label="Exponential PDF (λ=1)")
+
+plt.title("Exponential Probability Density Function")
+
+plt.xlabel("x"); plt.ylabel("f(x)")
+
+plt.legend(); plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "expon_pdf.png"), dpi=300); plt.close()
+
+
+<img width="1800" height="1200" alt="expon_pdf" src="https://github.com/user-attachments/assets/24baabd5-db32-43ee-8464-56ab02196ae2" />
+
+
+### --- 1.4 t-distribution PDF ---
+
+x = np.linspace(-4, 4, 400)
+
+plt.figure(figsize=(6,4))
+
+plt.plot(x, t.pdf(x, df=5), color="purple", label="t-distribution df=5")
+
+plt.title("Student's t Probability Density Function")
+
+plt.xlabel("x"); plt.ylabel("f(x)")
+
+plt.legend(); plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "t_pdf.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="t_pdf" src="https://github.com/user-attachments/assets/e753d757-ef31-47c1-a0f8-73eb7d3be82a" />
+
+
+### --- 1.5 Chi-square PDF ---
+
+x = np.linspace(0, 20, 400)
+
+plt.figure(figsize=(6,4))
+
+plt.plot(x, chi2.pdf(x, df=5), color="orange", label="Chi-square df=5")
+
+plt.title("Chi-square Probability Density Function")
+
+plt.xlabel("x"); plt.ylabel("f(x)")
+
+plt.legend(); plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "chi2_pdf.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="chi2_pdf" src="https://github.com/user-attachments/assets/96885f39-b399-478d-b6c9-3f320122b51d" />
+
+
+### --- 1.6 F-distribution PDF ---
+
+x = np.linspace(0, 5, 400)
+
+plt.figure(figsize=(6,4))
+
+plt.plot(x, f.pdf(x, dfn=5, dfd=10), color="brown", label="F-distribution dfn=5, dfd=10")
+
+plt.title("F Probability Density Function")
+
+plt.xlabel("x"); plt.ylabel("f(x)")
+
+plt.legend(); plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "f_pdf.png"), dpi=300); plt.close()
+
+
+<img width="1800" height="1200" alt="f_pdf" src="https://github.com/user-attachments/assets/f4122eb5-53da-43f1-9b1a-9241363155f1" />
+
+
+
+
+
+## 2. Discrete Distributions
+k = np.arange(0, 15)
+
+### --- 2.1 Poisson PMF ---
+
+plt.figure(figsize=(6,4))
+
+plt.stem(k, poisson.pmf(k, mu=5), basefmt=" ")
+
+plt.title("Poisson Probability Mass Function (λ=5)")
+
+plt.xlabel("k"); plt.ylabel("P(X=k)")
+
+plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "poisson_pmf.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="poisson_pmf" src="https://github.com/user-attachments/assets/09599d78-f8d2-4d17-a229-6f742faa5114" />
+
+
+### --- 2.2 Binomial PMF ---
+
+plt.figure(figsize=(6,4))
+
+plt.stem(k, binom.pmf(k, n=14, p=0.5), basefmt=" ")
+
+plt.title("Binomial Probability Mass Function (n=14, p=0.5)")
+
+plt.xlabel("k"); plt.ylabel("P(X=k)")
+
+plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "binomial_pmf.png"), dpi=300); plt.close()
+
+
+<img width="1800" height="1200" alt="binomial_pmf" src="https://github.com/user-attachments/assets/22dcfa40-f4ff-4ae4-9ecf-7a3b89db400f" />
+
+
+
+## 3. Data Visualization Plots
+#### Generate sample data
+
+np.random.seed(42)
+
+data = pd.DataFrame({
+
+    "Normal": np.random.normal(0,1,500),
+    
+    "Uniform": np.random.uniform(0,1,500),
+    
+    "Exponential": np.random.exponential(1,500),
+    
+    "x": np.random.normal(0,1,500),
+    
+    "y": np.random.normal(0,1,500)
+    
+})
+
+
+
+### --- 3.1 Histogram ---
+
+plt.figure(figsize=(6,4))
+
+plt.hist(data["Normal"], bins=20, color="skyblue", edgecolor="black", alpha=0.7)
+
+plt.title("Histogram of Normal Data")
+
+plt.xlabel("Value"); plt.ylabel("Frequency")
+
+plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "histogram.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="histogram" src="https://github.com/user-attachments/assets/1469600f-a4f4-475c-9090-73613f62e567" />
+
+
+
+### --- 3.2 Boxplot ---
+
+plt.figure(figsize=(6,4))
+
+sns.boxplot(data=data[["Normal","Uniform","Exponential"]])
+
+plt.title("Boxplot of Different Distributions")
+
+plt.savefig(os.path.join(save_dir, "boxplot.png"), dpi=300); plt.close()
+
+
+<img width="1800" height="1200" alt="boxplot" src="https://github.com/user-attachments/assets/7f3452ea-1a05-479c-ac24-32132385b78f" />
+
+
+### --- 3.3 ECDF (Empirical CDF) ---
+
+x_sorted = np.sort(data["Normal"])
+
+y_ecdf = np.arange(1, len(x_sorted)+1)/len(x_sorted)
+
+plt.figure(figsize=(6,4))
+
+plt.step(x_sorted, y_ecdf, color="blue")
+
+plt.title("Empirical CDF")
+
+plt.xlabel("x"); plt.ylabel("ECDF")
+
+plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "ecdf.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="ecdf" src="https://github.com/user-attachments/assets/b9768bc3-f67c-4008-b5ff-bedf08d79314" />
+
+
+### --- 3.4 QQ Plot ---
+
+plt.figure(figsize=(6,4))
+
+probplot(data["Normal"], dist="norm", plot=plt)
+
+plt.title("QQ Plot for Normal Data")
+
+plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "qqplot.png"), dpi=300); plt.close()
+
+
+<img width="1800" height="1200" alt="qqplot" src="https://github.com/user-attachments/assets/7ad8bfb9-7157-4831-b686-ec0ffc6e6a45" />
+
+
+### --- 3.5 Scatter Plot with Regression Line ---
+
+plt.figure(figsize=(6,4))
+
+sns.regplot(x="x", y="y", data=data)
+
+plt.title("Scatter Plot with Regression Line")
+
+plt.grid(True)
+
+plt.savefig(os.path.join(save_dir, "scatter_regression.png"), dpi=300); plt.close()
+
+
+<img width="1800" height="1200" alt="scatter_regression" src="https://github.com/user-attachments/assets/c731018b-1855-405d-9c04-99d91c2fbf3b" />
+
+### --- 3.6 Correlation Heatmap ---
+
+plt.figure(figsize=(6,4))
+
+sns.heatmap(data.corr(), annot=True, cmap="coolwarm", fmt=".2f")
+
+plt.title("Correlation Heatmap")
+
+plt.savefig(os.path.join(save_dir, "correlation_heatmap.png"), dpi=300); plt.close()
+
+<img width="1800" height="1200" alt="correlation_heatmap" src="https://github.com/user-attachments/assets/48ec9477-bbfe-45e7-87da-c295da9debe8" />
+
+
+
+
+
